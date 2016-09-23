@@ -24,7 +24,7 @@
 
 @property (nonatomic, assign) CGFloat progress;
     
-- (instancetype)dismiss;
+- (void)dismiss;
     
 
 

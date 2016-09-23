@@ -38,9 +38,8 @@ static bool   _animated;
 
 - (instancetype)initWithSupView:(UIView *)superView{
     NSAssert(superView, @"superView can not be nil");
-    BOOL isOk = [self judgeSuperViewHasFrame:superView];
-    NSAssert(isOk, @"superView needs frame");
-    _superViewSize = CGSizeMake(VIEW_W(superView), VIEW_H(superView));
+    NSAssert([self judgeSuperViewHasFrame:superView], @"superView needs frame");
+    _superViewSize = CGSizeMake(superView.frame.size.width,superView.frame.size.height);
     return [self init];
 }
 - (instancetype)init{
@@ -125,7 +124,11 @@ static bool   _animated;
     [_sectorLayer setStrokeColor:[sectorColor CGColor]];
 }
 
-
+- (void)dismiss
+    {
+        [self removeFromSuperview];
+    }
+    
 
 
 /*

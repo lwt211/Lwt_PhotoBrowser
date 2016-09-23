@@ -7,33 +7,15 @@
 //
 
 #import "Lwt_PhotoBrowser.h"
-#import "Lwt_Key.h"
 #import "Lwt_PhotoBrowserCell.h"
-#import <SDImageCache.h>
-#import <SDWebImageManager.h>
+#import "SDImageCache.h"
+#import "SDWebImageManager.h"
 #import <ImageIO/ImageIO.h>
 #import "Lwt_ActionSheet.h"
-#import <AVFoundation/AVCaptureDevice.h>
-
-#ifndef SCREEN_WIDTH
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.width
-#endif
-
-#ifndef SCREEN_HEIGHT
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#endif
-
-#ifndef SCREEN_WIDTH
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.width
-#endif
-
-#ifndef SCREEN_BOUNDS
-#define SCREEN_BOUNDS [[UIScreen mainScreen] bounds]
-#endif
 
 static NSString *Identifier = @"cell";
 
-static CGFloat const AnimateDuration = 0.3;
+static float const AnimateDuration = 0.3;
 
 
 @interface Lwt_PhotoBrowser () <UICollectionViewDataSource, UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
@@ -147,7 +129,7 @@ static CGFloat const AnimateDuration = 0.3;
     _countLabel.font = [UIFont systemFontOfSize:15];
     _countLabel.textAlignment = NSTextAlignmentCenter;
     [_countLabel sizeToFit];
-    _countLabel.center = CGPointMake(self.centerX,30);
+    _countLabel.center = CGPointMake(self.center.x,30);
   
     [self addSubview:_countLabel];
     
@@ -209,7 +191,7 @@ static CGFloat const AnimateDuration = 0.3;
     _currentIndex = scrollView.contentOffset.x/SCREEN_WIDTH;
     _countLabel.text = [NSString stringWithFormat:@" %zd / %zd ",_currentIndex+1,_URLStrings?_URLStrings.count:_images.count];
      [_countLabel sizeToFit];
-      _countLabel.center = CGPointMake(self.centerX,30);
+      _countLabel.center = CGPointMake(self.center.x,30);
 }
 
 
@@ -217,7 +199,8 @@ static CGFloat const AnimateDuration = 0.3;
 - (UIImageView *)tempViewFromClickView{
   
     UIImageView *tempView = [[UIImageView alloc] init];
-    
+    tempView.clipsToBounds = YES;
+    tempView.contentMode = UIViewContentModeScaleAspectFill;
     if([_clickView isKindOfClass:[UIImageView class]]){
         UIImageView *imgV = (UIImageView *)_clickView;
         tempView.image = imgV.image;
@@ -328,8 +311,9 @@ static CGFloat const AnimateDuration = 0.3;
         CGRect rect = [_clickView convertRect:_clickView.bounds toView:self];
         _collectionView.hidden = YES;
         _countLabel.hidden = YES;
+        tempView.clipsToBounds = YES;
+        tempView.contentMode = UIViewContentModeScaleAspectFill;
         CGSize tempRectSize;
-        
         if (tempView.image)
         {
             CGFloat width = tempView.image.size.width;

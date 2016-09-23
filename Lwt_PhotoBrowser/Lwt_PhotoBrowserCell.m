@@ -33,7 +33,7 @@
     return self;
 }
 - (void)setupView {
-    _scrollView = [[UIScrollView alloc] initWithFrame:SCREEN_BOUNDS];
+    _scrollView = [[UIScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _scrollView.backgroundColor = [UIColor blackColor];
     _scrollView.showsHorizontalScrollIndicator = NO;
     _scrollView.showsVerticalScrollIndicator = NO;
@@ -43,7 +43,7 @@
     
     [self.contentView addSubview:_scrollView];
     
-    _imageView = [[UIImageView alloc] initWithFrame:SCREEN_BOUNDS];
+    _imageView = [[UIImageView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
     _imageView.contentMode = UIViewContentModeScaleAspectFit;
     _imageView.clipsToBounds = YES;
@@ -164,7 +164,6 @@
                 [_scrollView setZoomScale:1.f animated:YES];
                 if(error){
                      [_progressHUD removeFromSuperview];
-                    [SVProgressHUD showErrorWithStatus:@"加载失败"];
                 }else{
                     [weakSelf layoutSubviews];
                 }
@@ -240,7 +239,7 @@
     }else{
         frame.origin = CGPointZero;
         _imageView.frame = frame;
-        _scrollView.contentSize = _imageView.size;
+        _scrollView.contentSize = _imageView.frame.size;
     }
     _scrollView.contentOffset = CGPointZero;
 }

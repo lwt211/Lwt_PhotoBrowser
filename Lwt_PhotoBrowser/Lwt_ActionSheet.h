@@ -8,6 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+
+#ifndef SCREEN_WIDTH
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#endif
+
+#ifndef SCREEN_HEIGHT
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#endif
+
+#ifndef SCREEN_BOUNDS
+#define SCREEN_BOUNDS [[UIScreen mainScreen] bounds]
+#endif
+
+#define CONTENT_FONT [UIFont systemFontOfSize:18.f]
+
+
+static CGFloat const SectionHeight = 45; //每个的高度
+
+
+
 typedef void(^ActionBlock)(NSInteger clickIndex);
 
 

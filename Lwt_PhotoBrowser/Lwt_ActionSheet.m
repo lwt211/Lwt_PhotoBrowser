@@ -8,26 +8,7 @@
 
 #import "Lwt_ActionSheet.h"
 
-#ifndef SCREEN_WIDTH
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.width
-#endif
 
-#ifndef SCREEN_HEIGHT
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
-#endif
-
-#ifndef SCREEN_WIDTH
-#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.width
-#endif
-
-#ifndef SCREEN_BOUNDS
-#define SCREEN_BOUNDS [[UIScreen mainScreen] bounds]
-#endif
-
-#define CONTENT_FONT [UIFont systemFontOfSize:18.f]
-
-
-static CGFloat const SectionHeight = 45; //每个的高度
 
 
 @interface Lwt_ActionSheet ()
@@ -155,7 +136,7 @@ static CGFloat const SectionHeight = 45; //每个的高度
 - (void)dismiss{
     [UIView animateWithDuration:0.3f animations:^{
         [_bgView setTransform:CGAffineTransformIdentity];
-        self.alpha = 0;
+        self.backgroundColor = [UIColor clearColor];
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
     }];
