@@ -9,7 +9,7 @@
 ![](https://github.com/lwt211/Lwt_PhotoBrowser/raw/master/resource/IMG_2215.jpg)  
 
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath<br/>
+/- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath<br/>
 {<br/>
  /[collectionView deselectItemAtIndexPath:indexPath animated:YES];<br/>
 MyCell *cell = ( MyCell *)[collectionView cellForItemAtIndexPath:indexPath];<br/>
